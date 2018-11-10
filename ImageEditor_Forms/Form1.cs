@@ -30,10 +30,21 @@ namespace ImageEditor_Forms
             }
             pressedButton = Point_button;
             Point_button.BackColor = Color.LightBlue;
+            this.Resize+=Form1_Resize;
 
             Canvas.MouseMove += Canvas_MouseMove;
             Canvas.MouseDown += Canvas_MouseDown;
             Canvas.MouseUp += Canvas_MouseUp;
+        }
+
+        private void Form1_Resize(object sender, EventArgs e){
+            Canvas.Width = Width-116;
+            Canvas.Height = Height-63;
+            Bitmap bmp = new Bitmap(Canvas.Width, Canvas.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.DrawImageUnscaled(Canvas.Image, 0, 0, Canvas.Width, Canvas.Height);
+            Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height, g);
+            //TODO:naprawic skalowanie bo chuj czysci sie przy zmianie rozmiaru
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
@@ -60,6 +71,7 @@ namespace ImageEditor_Forms
                         switch (pressedButton.Name) {
                             case "Point_button":
                                 g.SmoothingMode = SmoothingMode.AntiAlias;
+                                //g.DrawEllipse(new Pen(color, thickness), lastPoint.X-(thickness/2)+1, lastPoint.Y-(thickness/2)+1, (thickness/2), (thickness/2));
                                 g.DrawLine(new Pen(color, thickness), lastPoint, e.Location);
                                 Canvas.Invalidate();
                                 break;

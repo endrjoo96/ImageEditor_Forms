@@ -164,6 +164,7 @@
             this.Canvas.Location = new System.Drawing.Point(88, 12);
             this.Canvas.Name = "Canvas";
             this.Canvas.Size = new System.Drawing.Size(230, 230);
+            this.Canvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Canvas.TabIndex = 12;
             this.Canvas.TabStop = false;
             // 
@@ -200,6 +201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Color_indicator)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
